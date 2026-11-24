@@ -1,36 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
-from src.loss import mae_
-
-
-def zscore(x):
-    """Computes the normalized version of a non-empty numpy.ndarray using the z-score standardization.
-    Args:
-    x: has to be an numpy.ndarray, a vector.
-    Returns:
-    x' as a numpy.ndarray.
-    None if x is a non-empty numpy.ndarray or not a numpy.ndarray.
-    Raises:
-    This function shouldn't raise any Exception.
-    """
-
-    m = x.shape[0]
-    mean = 0
-    for i in range(m):
-        mean += x[i]
-
-    mean = mean / m if m > 0 else 0
-
-    std = 0
-    for i in range(m):
-        std += (x[i] - mean) ** 2
-    std /= m if m > 0 else 0
-    std = np.sqrt(std)
-
-    x_normalized = (x - mean) / np.where(std == 0, 1, std)
-
-    return x_normalized
+from src.loss import loss_
 
 
 def gradient(x, y, theta):
@@ -96,7 +66,7 @@ class MyLinearRegression:
         new_theta = self.thetas.copy()
         for _ in range(self.max_iter):
             y_hat = predict_(x, new_theta)
-            current_loss = self.loss_(y, y_hat)
+            current_loss = loss_(y, y_hat)
             self.costs.append(current_loss)
 
             grad = gradient(x, y, new_theta)
@@ -116,6 +86,3 @@ class MyLinearRegression:
 
     def predict_(self, x):
         return predict_(x, self.thetas)
-
-    def loss_(self, y, y_hat):
-        return mae_(y, y_hat)

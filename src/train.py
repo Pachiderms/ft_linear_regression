@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 
 from src.main import MyLinearRegression
+from src.loss import r2score_
 
 DATA = sys.argv[1] if len(sys.argv) > 1 else "data.csv"
 OUT = "thetas.json"
@@ -31,7 +32,7 @@ def main():
     y_hat = theta0 + theta1 * x
     ss_res = float(np.sum((y - y_hat) ** 2))
     ss_tot = float(np.sum((y - y.mean()) ** 2))
-    print(f"R2 = {1 - ss_res / ss_tot:.4f}")
+    print(f"R2 = {r2score_(y_hat, y):.4f}")
 
 
 if __name__ == "__main__":

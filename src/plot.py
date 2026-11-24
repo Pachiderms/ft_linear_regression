@@ -5,7 +5,7 @@ import matplotlib
 
 import pandas as pd
 
-DATA = sys.argv[1] if len(sys.argv) > 1 else "data.csv"
+DATA = next((a for a in sys.argv[1:] if not a.startswith("--")), "data.csv")
 SAVE = "--save" in sys.argv
 
 
