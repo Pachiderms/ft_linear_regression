@@ -32,7 +32,7 @@ def main():
     y_hat = theta0 + theta1 * x
     ss_res = float(np.sum((y - y_hat) ** 2))
     ss_tot = float(np.sum((y - y.mean()) ** 2))
-    print(f"R2 = {r2score_(y_hat, y):.4f}")
+    print(f"R2 = {r2score_(y, y_hat):.4f}")
 
 
 if __name__ == "__main__":

@@ -15,22 +15,26 @@ def main():
     import matplotlib.pyplot as plt
 
     df = pd.read_csv(DATA)
-    with open("thetas.json") as f:
-        t = json.load(f)
+    try:
+        with open("thetas.json") as f:
+            t = json.load(f)
 
-    xs = [df["km"].min(), df["km"].max()]
-    ys = [t["theta0"] + t["theta1"] * x for x in xs]
+        xs = [df["km"].min(), df["km"].max()]
+        ys = [t["theta0"] + t["theta1"] * x for x in xs]
 
-    plt.scatter(df["km"], df["price"], label="données")
-    plt.plot(xs, ys, color="red", label="régression linéaire")
-    plt.xlabel("Kilométrage (km)")
-    plt.ylabel("Prix")
-    plt.legend()
-    if SAVE:
-        plt.savefig("regression.png", dpi=120)
-        print("regression.png enregistré")
-    else:
-        plt.show()
+        plt.scatter(df["km"], df["price"], label="données")
+        plt.plot(xs, ys, color="red", label="régression linéaire")
+        plt.xlabel("Kilométrage (km)")
+        plt.ylabel("Prix")
+        plt.legend()
+        if SAVE:
+            plt.savefig("regression.png", dpi=120)
+            print("regression.png enregistré")
+        else:
+            plt.show()
+    except:
+        print("No thetas found")
+        return
 
 
 if __name__ == "__main__":
