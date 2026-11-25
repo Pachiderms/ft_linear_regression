@@ -15,13 +15,6 @@ def main():
 
     y = df["price"].to_numpy(dtype=float)
     y_hat = t["theta0"] + t["theta1"] * df["km"].to_numpy(dtype=float)
-    m = len(y)
-
-    mae = sum(abs(a - b) for a, b in zip(y_hat, y)) / m
-    mse = sum((a - b) ** 2 for a, b in zip(y_hat, y)) / m
-    mean = sum(y) / m
-    ss_tot = sum((a - mean) ** 2 for a in y)
-    r2 = 1 - (mse * m) / ss_tot
 
     print(f"MAE  : {mae_(y, y_hat):.2f}")
     print(f"RMSE : {rmse_(y, y_hat):.2f}")

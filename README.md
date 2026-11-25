@@ -69,7 +69,7 @@ uv run python -m src.train data_km_price_expanded.csv   # autre dataset
 # 2. Prédire un prix
 uv run python -m src.predict
 # Kilométrage : 100000
-# Prix estimé : 6354.70
+# Prix estimé : 6354.70 avec un modèle train sur data.csv
 ```
 
 Sans `thetas.json` (modèle non entraîné), `predict` renvoie 0, car theta0 et theta1

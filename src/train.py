@@ -30,8 +30,6 @@ def main():
     print(f"theta0 = {theta0:.4f}, theta1 = {theta1:.6f} -> {OUT}")
 
     y_hat = theta0 + theta1 * x
-    ss_res = float(np.sum((y - y_hat) ** 2))
-    ss_tot = float(np.sum((y - y.mean()) ** 2))
     print(f"R2 = {r2score_(y, y_hat):.4f}")
 
 
